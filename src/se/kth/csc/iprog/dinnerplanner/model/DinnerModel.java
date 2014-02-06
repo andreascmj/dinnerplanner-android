@@ -16,7 +16,7 @@ public class DinnerModel implements IDinnerModel{
 	
 	
 	/**
-	 * The constructor of the overall model. Set the default values here
+	 * The constructor of the overall model. Set the default values here HAY
 	 */
 	public DinnerModel(){
 		

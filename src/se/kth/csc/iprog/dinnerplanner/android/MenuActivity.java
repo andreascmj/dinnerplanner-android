@@ -54,14 +54,27 @@ public class MenuActivity extends Activity {
     }
 
     private void fillStarterView() {
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        LinearLayout layout = (LinearLayout) findViewById(R.id.starterScrollView);
-        for (Dish s : dinner.getDishes()) {
+        LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
+        for (Dish s : dinner.getDishesOfType(1)) {
             ImageButton ib = new ImageButton(this);
-            int imageId = getResources().getIdentifier(s.getImage(), "drawable", null);
+            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            ib.setLayoutParams(lp);
-            layout.addView(ib);
+            ib.setPadding(10,10,10,10);
+            starterlayout.addView(ib);
+        }
+        LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
+        for (Dish s : dinner.getDishesOfType(2)) {
+            ImageButton ib = new ImageButton(this);
+            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
+            ib.setImageResource(imageId);
+            mainlayout.addView(ib);
+        }
+        LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
+        for (Dish s : dinner.getDishesOfType(3)) {
+            ImageButton ib = new ImageButton(this);
+            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
+            ib.setImageResource(imageId);
+            desertlayout.addView(ib);
         }
     }
 

@@ -1,5 +1,6 @@
 package se.kth.csc.iprog.dinnerplanner.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,9 @@ public class DinnerModel implements IDinnerModel{
 
 	Set<Dish> dishes = new HashSet<Dish>();
     int numberOfGuests;
+    Dish starter;
+    Dish main;
+    Dish desert;
 	
 	/**
 	 * TODO: For Lab2 you need to implement the IDinnerModel interface.
@@ -113,21 +117,40 @@ public class DinnerModel implements IDinnerModel{
 
     @Override
     public Dish getSelectedDish(int type) {
-        return null;
+        switch (type){
+            case 1: return starter;
+            case 2: return main;
+            default: return desert;
+        }
     }
 
     @Override
     public Set<Dish> getFullMenu() {
-        return null;
+        HashSet<Dish> fm = new HashSet<Dish>();
+        // TODO avoid null-pointers!!
+        fm.add(starter);
+        fm.add(main);
+        fm.add(desert);
+        return fm;
     }
 
     @Override
     public Set<Ingredient> getAllIngredients() {
-        return null;
+        HashSet<Ingredient> ai = new HashSet<Ingredient>();
+        // TODO So many null-pointers!!
+        ai.addAll(starter.ingredients);
+        ai.addAll(main.ingredients);
+        ai.addAll(desert.ingredients);
+        return ai;
     }
 
     @Override
     public float getTotalMenuPrice() {
-        return 0;
+        Set<Ingredient> ai = getAllIngredients();
+        int price = 0;
+        for (Ingredient i : ai) {
+            price += i.getPrice();
+        }
+        return price;
     }
 }

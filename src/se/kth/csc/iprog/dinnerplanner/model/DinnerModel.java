@@ -9,17 +9,10 @@ public class DinnerModel implements IDinnerModel{
 
 	Set<Dish> dishes = new HashSet<Dish>();
     int numberOfGuests;
-    Dish starter;
-    Dish main;
-    Dish desert;
-	
-	/**
-	 * TODO: For Lab2 you need to implement the IDinnerModel interface.
-	 * When you do this you will have all the needed fields and methods
-	 * for the dinner planner (number of guests, selected dishes, etc.). 
-	 */
-	
-	
+    private Dish starter;
+    private Dish main;
+    private Dish desert;
+
 	/**
 	 * The constructor of the overall model. Set the default values here HAY
 	 */
@@ -70,7 +63,7 @@ public class DinnerModel implements IDinnerModel{
         dishes.add(dish3);
 	}
 	/**
-	 * Returns the set of dishes of specific type. (1 = starter, 2 = main, 3 = desert).
+	 * Returns the set of dishes
 	 */
 	public Set<Dish> getDishes(){
 		return dishes;
@@ -163,5 +156,17 @@ public class DinnerModel implements IDinnerModel{
         }
         price = price * getNumberOfGuests();
         return price;
+    }
+
+    public void setDesert(Dish desert) {
+        this.desert = desert;
+    }
+
+    public void setMain(Dish main) {
+        this.main = main;
+    }
+
+    public void setStarter(Dish starter) {
+        this.starter = starter;
     }
 }

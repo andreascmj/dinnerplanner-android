@@ -1,11 +1,14 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,7 +22,7 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
 /**
  * Created by Jonas on 2014-02-06.
  */
-public class MenuActivity extends Activity {
+public class MenuActivity extends Activity implements View.OnClickListener{
 
     public static DinnerModel dinner = new DinnerModel();
 
@@ -57,6 +60,8 @@ public class MenuActivity extends Activity {
         LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
         for (Dish s : dinner.getDishesOfType(1)) {
             ImageButton ib = new ImageButton(this);
+            ib.setTag(s.getName());
+            ib.setOnClickListener(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
             ib.setPadding(1,1,1,1);
@@ -65,17 +70,21 @@ public class MenuActivity extends Activity {
         LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
         for (Dish s : dinner.getDishesOfType(2)) {
             ImageButton ib = new ImageButton(this);
+            ib.setTag(s.getName());
+            ib.setOnClickListener(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            ib.setPadding(1,1,1,1);
+            ib.setPadding(1, 1, 1, 1);
             mainlayout.addView(ib);
         }
         LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
         for (Dish s : dinner.getDishesOfType(3)) {
             ImageButton ib = new ImageButton(this);
+            ib.setTag(s.getName());
+            ib.setOnClickListener(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            ib.setPadding(1,1,1,1);
+            ib.setPadding(1, 1, 1, 1);
             desertlayout.addView(ib);
         }
     }
@@ -103,4 +112,10 @@ public class MenuActivity extends Activity {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        Button button_clicked = (Button)view;
+        String dish = (String)button_clicked.getTag();
+        new AlertDialog.Builder(this).setTitle(dish).setNeutralButton("Close", null).show();
+    }
 }

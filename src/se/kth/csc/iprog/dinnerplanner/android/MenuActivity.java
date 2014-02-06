@@ -20,6 +20,8 @@ public class MenuActivity extends Activity {
         // Set the view for the main activity screen
         // it must come before any call to findViewById method
         setContentView(R.layout.planning_screen);
+        fillDropdown();
+
     }
 
     private void fillDropdown() {

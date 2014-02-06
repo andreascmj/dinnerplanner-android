@@ -14,8 +14,10 @@ public class ExampleView {
 		// store in the class the reference to the Android View
 		this.view = view;
 
-		TextView example = (TextView) view.findViewById(R.id.example_text);
-		example.setText("Hello world");
+		TextView g1 = (TextView) view.findViewById(R.id.greeting_1);
+		g1.setText("Welcome to Dinner Planner!");
+
+
 
 		// Setup the rest of the view layout
 	}

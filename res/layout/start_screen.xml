@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/start_button_text"
-        android:clickable="false"
+        android:clickable="true"
         android:onClick="start_button_click" />
 
 </LinearLayout>

@@ -3,7 +3,9 @@ package se.kth.csc.iprog.dinnerplanner.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -54,28 +56,33 @@ public class MenuActivity extends Activity {
     }
 
     private void fillStarterView() {
+
         LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
-        for (Dish s : dinner.getDishesOfType(1)) {
-            ImageButton ib = new ImageButton(this);
-            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
-            ib.setImageResource(imageId);
-            ib.setPadding(1,1,1,1);
-            starterlayout.addView(ib);
-        }
+        populateDishType(1, starterlayout);
         LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
-        for (Dish s : dinner.getDishesOfType(2)) {
-            ImageButton ib = new ImageButton(this);
-            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
-            ib.setImageResource(imageId);
-            ib.setPadding(1,1,1,1);
-            mainlayout.addView(ib);
-        }
+        populateDishType(2, mainlayout);
         LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
-        for (Dish s : dinner.getDishesOfType(3)) {
+        populateDishType(3, desertlayout);
+    }
+
+    private void populateDishType(int type, LinearLayout layout) {
+        for (Dish s : dinner.getDishesOfType(type)) {
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(200, 200);
+
+            LinearLayout imageAndTextBox = new LinearLayout(this);
+            imageAndTextBox.setOrientation(LinearLayout.VERTICAL);
+
+            TextView tv = new TextView(this);
+            tv.setText(s.getName());
+            tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            desertlayout.addView(ib);
+            ib.setLayoutParams(lp);
+            layout.addView(imageAndTextBox);
+            imageAndTextBox.addView(ib);
+            imageAndTextBox.addView(tv);
         }
     }
 

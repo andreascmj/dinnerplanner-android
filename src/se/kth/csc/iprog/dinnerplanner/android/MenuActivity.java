@@ -114,7 +114,7 @@ public class MenuActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        Button button_clicked = (Button)view;
+        ImageButton button_clicked = (ImageButton)view;
         String dish = (String)button_clicked.getTag();
         new AlertDialog.Builder(this).setTitle(dish).setNeutralButton("Close", null).show();
     }

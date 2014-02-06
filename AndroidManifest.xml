@@ -24,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="se.kth.csc.iprog.dinnerplanner.android.MenuActivity">
+        </activity>
     </application>
 
 </manifest>

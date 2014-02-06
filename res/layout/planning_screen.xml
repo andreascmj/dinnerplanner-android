@@ -35,12 +35,14 @@
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="@string/selectMenu" />
+        android:text="@string/selectMenu"
+        android:textSize="36dp" />
 
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="@string/starter" />
+        android:text="@string/starter"
+        android:textSize="20dp" />
 
     <HorizontalScrollView
         android:layout_height="wrap_content"
@@ -58,7 +60,8 @@
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="@string/main" />
+        android:text="@string/main"
+        android:textSize="20dp" />
 
     <HorizontalScrollView
         android:layout_height="wrap_content"
@@ -76,7 +79,8 @@
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="@string/desert" />
+        android:text="@string/desert"
+        android:textSize="20dp" />
 
     <HorizontalScrollView
         android:layout_height="wrap_content"

@@ -75,6 +75,7 @@ public class MenuActivity extends Activity {
             TextView tv = new TextView(this);
             tv.setText(s.getName());
             tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            tv.setTextSize(13);
 
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
@@ -95,7 +96,8 @@ public class MenuActivity extends Activity {
 
     private void update_total_cost(){
         TextView totalcost_box = (TextView)findViewById(R.id.total_cost);
-        totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
+        //totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
+        totalcost_box.setText("Total cost: " + dinner.getNumberOfGuests() + " kr"); //TODO remove this
     }
 
     public void details_click(View view){

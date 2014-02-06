@@ -1,10 +1,13 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
+import android.media.Image;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import se.kth.csc.iprog.dinnerplanner.android.view.ExampleView;
+import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import se.kth.csc.iprog.dinnerplanner.model.Ingredient;
 
 /**
@@ -16,6 +19,7 @@ public class DetailsActivity  extends Activity{
 
         setContentView(R.layout.details_screen);
         set_total_cost();
+        populatePics();
     }
 
     public void set_details(){
@@ -30,5 +34,23 @@ public class DetailsActivity  extends Activity{
     public void set_total_cost(){
         TextView total_cost_text_box = (TextView)findViewById(R.id.details_total_cost);
         total_cost_text_box.setText("Total cost: " + MenuActivity.dinner.getTotalMenuPrice() + " kr");
+    }
+
+    public void populatePics() {
+        if(MenuActivity.dinner.getFullMenu().isEmpty()) {
+
+        } else {
+            Dish starter = MenuActivity.dinner.getSelectedDish(1);
+            Dish main = MenuActivity.dinner.getSelectedDish(2);
+            Dish desert = MenuActivity.dinner.getSelectedDish(3);
+
+            ImageButton starterButton = (ImageButton) findViewById(R.id.starter_image);
+            ImageButton mainButton = (ImageButton) findViewById(R.id.main_image);
+            ImageButton desertButton = (ImageButton) findViewById(R.id.desert_image);
+
+            starterButton.setImageResource(getResources().getIdentifier(starter.getImage(), "drawable", getPackageName()));
+            mainButton.setImageResource(getResources().getIdentifier(main.getImage(), "drawable", getPackageName()));
+            desertButton.setImageResource(getResources().getIdentifier(desert.getImage(), "drawable", getPackageName()));
+        }
     }
 }

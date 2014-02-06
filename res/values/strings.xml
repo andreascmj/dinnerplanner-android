@@ -4,5 +4,9 @@
     <string name="app_name">DinnerPlanner</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="g1">Welcome to Dinner Planner</string>
+    <string name="g2">Here you will be able to easily plan your dinner.</string>
+    <string name="g3">On the next page start by selecting number of participants. Then select your courses.</string>
+    <string name="g4">Watch magic happen!</string>
 
 </resources>

@@ -151,6 +151,7 @@ public class DinnerModel implements IDinnerModel{
         for (Ingredient i : ai) {
             price += i.getPrice();
         }
+        price = price * getNumberOfGuests();
         return price;
     }
 }

@@ -59,7 +59,7 @@ public class MenuActivity extends Activity {
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            ib.setPadding(10,10,10,10);
+            ib.setPadding(1,1,1,1);
             starterlayout.addView(ib);
         }
         LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
@@ -67,6 +67,7 @@ public class MenuActivity extends Activity {
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
+            ib.setPadding(1,1,1,1);
             mainlayout.addView(ib);
         }
         LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
@@ -74,6 +75,7 @@ public class MenuActivity extends Activity {
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
+            ib.setPadding(1,1,1,1);
             desertlayout.addView(ib);
         }
     }

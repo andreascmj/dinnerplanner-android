@@ -12,6 +12,7 @@
     <string name="number_persons">Participants</string>
     <string name="totalCost">Total cost: 0 kr</string>
     <string name="details_button">Create</string>
+    <string name="details_header">Ingredients</string>
     <string-array name="dropdown">
         <item>1</item><item>2</item><item>3</item><item>4</item><item>5</item><item>6</item><item>7</item><item>8</item>
     </string-array>

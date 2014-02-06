@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import se.kth.csc.iprog.dinnerplanner.android.view.ExampleView;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
+import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 /**
  * Created by Jonas on 2014-02-06.
@@ -16,6 +18,7 @@ import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 public class MenuActivity extends Activity {
 
     DinnerModel dinner = new DinnerModel();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +36,12 @@ public class MenuActivity extends Activity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int selected = (int) l+1;
                 dinner.setNumberOfGuests(selected);
+                update_total_cost();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 dinner.setNumberOfGuests(0);
+                update_total_cost();
             }
             });
 
@@ -48,6 +53,11 @@ public class MenuActivity extends Activity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dropdown, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+
+    private void update_total_cost(){
+        TextView totalcost_box = (TextView)findViewById(R.id.total_cost);
+        totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
     }
 
 

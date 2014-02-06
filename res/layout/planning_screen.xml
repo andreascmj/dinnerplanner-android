@@ -23,6 +23,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/totalCost"/>
+
     </LinearLayout>
 
 </LinearLayout>

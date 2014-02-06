@@ -10,6 +10,7 @@
     <string name="g4">Watch magic happen!</string>
     <string name="start_button_text">Start!</string>
     <string name="number_persons">Participants</string>
+    <string name="totalCost">Total cost: 0 kr</string>
     <string-array name="dropdown">
         <item>1</item><item>2</item><item>3</item><item>4</item><item>5</item><item>6</item><item>7</item><item>8</item>
     </string-array>

@@ -25,10 +25,18 @@
             android:spinnerMode="dropdown" />
 
         <TextView
+            android:id="@+id/total_cost"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/totalCost"/>
 
     </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        </GridLayout>
 
 </LinearLayout>

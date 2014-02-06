@@ -22,7 +22,7 @@ public class DetailsActivity  extends Activity{
         TextView details_text_box = (TextView)findViewById(R.id.details_text);
         String ingredients = "";
         for (Ingredient i :MenuActivity.dinner.getAllIngredients()){
-            ingredients = ingredients + i.getName() + " /n";
+            ingredients = ingredients + i.getName() + " \n";
         }
         details_text_box.setText(ingredients);
     }

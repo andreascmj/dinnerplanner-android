@@ -60,7 +60,9 @@ public class DinnerModel implements IDinnerModel{
 		dishes.add(dish2);
 
         Dish dish3 = new Dish("Ice Cream", Dish.DESERT, "meatballs.jpg", "Put whatever ice cream you want.");
-		
+        Ingredient dish3ing1 = new Ingredient("Ice Cream", 120, "g", 15);
+        dish3.addIngredient(dish3ing1);
+        dishes.add(dish3);
 	}
 	/**
 	 * Returns the set of dishes of specific type. (1 = starter, 2 = main, 3 = desert).

@@ -14,6 +14,9 @@
     <string name="selectMenu">Choose menu</string>
     <string name="details_button">Create</string>
     <string name="details_header">Ingredients</string>
+    <string name="starter">Starter</string>
+    <string name="main">Main</string>
+    <string name="desert">Desert</string>
     <string-array name="dropdown">
         <item>1</item><item>2</item><item>3</item><item>4</item><item>5</item><item>6</item><item>7</item><item>8</item>
     </string-array>

@@ -67,7 +67,7 @@ public class MenuActivity extends Activity {
 
     private void populateDishType(int type, LinearLayout layout) {
         for (Dish s : dinner.getDishesOfType(type)) {
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(200, 200);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(150, 150);
 
             LinearLayout imageAndTextBox = new LinearLayout(this);
             imageAndTextBox.setOrientation(LinearLayout.VERTICAL);

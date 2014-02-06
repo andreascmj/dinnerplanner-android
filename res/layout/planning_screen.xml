@@ -34,8 +34,13 @@
 
     <TextView
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/selectMenu"/>
+        android:layout_width="match_parent"
+        android:text="@string/selectMenu" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/starter" />
 
     <HorizontalScrollView
         android:layout_height="wrap_content"
@@ -50,6 +55,11 @@
 
         </HorizontalScrollView>
 
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/main" />
+
     <HorizontalScrollView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content">
@@ -62,6 +72,11 @@
         </LinearLayout>
 
     </HorizontalScrollView>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/desert" />
 
     <HorizontalScrollView
         android:layout_height="wrap_content"
@@ -78,7 +93,7 @@
 
     <Button
         android:id="@+id/go_to_details_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/details_button"
         android:gravity="center"

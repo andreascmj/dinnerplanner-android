@@ -127,20 +127,30 @@ public class DinnerModel implements IDinnerModel{
     @Override
     public Set<Dish> getFullMenu() {
         HashSet<Dish> fm = new HashSet<Dish>();
-        // TODO avoid null-pointers!!
-        fm.add(starter);
-        fm.add(main);
-        fm.add(desert);
+        if (starter != null) {
+            fm.add(starter);
+        }
+        if (main != null) {
+            fm.add(main);
+        }
+        if (desert != null) {
+            fm.add(desert);
+        }
         return fm;
     }
 
     @Override
     public Set<Ingredient> getAllIngredients() {
         HashSet<Ingredient> ai = new HashSet<Ingredient>();
-        // TODO So many null-pointers!!
-        ai.addAll(starter.ingredients);
-        ai.addAll(main.ingredients);
-        ai.addAll(desert.ingredients);
+        if (starter != null) {
+            ai.addAll(starter.ingredients);
+        }
+        if (main != null) {
+            ai.addAll(main.ingredients);
+        }
+        if (desert != null) {
+            ai.addAll(desert.ingredients);
+        }
         return ai;
     }
 

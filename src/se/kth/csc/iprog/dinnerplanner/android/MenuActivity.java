@@ -61,7 +61,7 @@ public class MenuActivity extends Activity {
         totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
     }
 
-    public void details_click(){
+    public void details_click(View view){
         if (dinner.getFullMenu().isEmpty()){
 
         }

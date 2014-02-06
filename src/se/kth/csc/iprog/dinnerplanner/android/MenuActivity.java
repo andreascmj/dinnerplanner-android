@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -54,12 +55,18 @@ public class MenuActivity extends Activity {
     }
 
     private void fillStarterView() {
+
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT,1);
+        lp.height = 200;
+        lp.width = 200;
+
         LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
         for (Dish s : dinner.getDishesOfType(1)) {
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            ib.setPadding(1,1,1,1);
+            ib.setLayoutParams(lp);
             starterlayout.addView(ib);
         }
         LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
@@ -67,7 +74,6 @@ public class MenuActivity extends Activity {
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            ib.setPadding(1,1,1,1);
             mainlayout.addView(ib);
         }
         LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
@@ -75,7 +81,6 @@ public class MenuActivity extends Activity {
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            ib.setPadding(1,1,1,1);
             desertlayout.addView(ib);
         }
     }

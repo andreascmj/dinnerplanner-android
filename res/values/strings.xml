@@ -9,5 +9,6 @@
     <string name="g3">On the next page start by selecting number of participants. Then select your courses.</string>
     <string name="g4">Watch magic happen!</string>
     <string name="start_button_text">Start!</string>
+    <string name="number_persons">Participants</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +18,7 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
  */
 public class MenuActivity extends Activity {
 
-    DinnerModel dinner = new DinnerModel();
+    public static DinnerModel dinner = new DinnerModel();
 
 
     @Override
@@ -58,6 +59,16 @@ public class MenuActivity extends Activity {
     private void update_total_cost(){
         TextView totalcost_box = (TextView)findViewById(R.id.total_cost);
         totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
+    }
+
+    public void details_click(){
+        if (dinner.getFullMenu().isEmpty()){
+
+        }
+        else{
+            Intent details_screen_navigation = new Intent(this, DetailsActivity.class);
+            startActivity(details_screen_navigation);
+        }
     }
 
 

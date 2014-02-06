@@ -1,10 +1,14 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,7 +21,7 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
  */
 public class MenuActivity extends Activity {
 
-    DinnerModel dinner = new DinnerModel();
+    public static DinnerModel dinner = new DinnerModel();
 
 
     @Override
@@ -30,6 +34,7 @@ public class MenuActivity extends Activity {
 
         setContentView(R.layout.planning_screen);
         fillDropdown();
+        fillStarterView();
         Spinner spinner = (Spinner) findViewById(R.id.dropdown);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -48,6 +53,31 @@ public class MenuActivity extends Activity {
 
     }
 
+    private void fillStarterView() {
+        LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
+        for (Dish s : dinner.getDishesOfType(1)) {
+            ImageButton ib = new ImageButton(this);
+            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
+            ib.setImageResource(imageId);
+            ib.setPadding(10,10,10,10);
+            starterlayout.addView(ib);
+        }
+        LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
+        for (Dish s : dinner.getDishesOfType(2)) {
+            ImageButton ib = new ImageButton(this);
+            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
+            ib.setImageResource(imageId);
+            mainlayout.addView(ib);
+        }
+        LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
+        for (Dish s : dinner.getDishesOfType(3)) {
+            ImageButton ib = new ImageButton(this);
+            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
+            ib.setImageResource(imageId);
+            desertlayout.addView(ib);
+        }
+    }
+
     private void fillDropdown() {
         Spinner spinner = (Spinner) findViewById(R.id.dropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dropdown, android.R.layout.simple_spinner_item);
@@ -58,6 +88,16 @@ public class MenuActivity extends Activity {
     private void update_total_cost(){
         TextView totalcost_box = (TextView)findViewById(R.id.total_cost);
         totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
+    }
+
+    public void details_click(View view){
+        if (dinner.getFullMenu().isEmpty()){
+
+        }
+        else{
+            Intent details_screen_navigation = new Intent(this, DetailsActivity.class);
+            startActivity(details_screen_navigation);
+        }
     }
 
 

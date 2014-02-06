@@ -11,6 +11,7 @@
     <string name="start_button_text">Start!</string>
     <string name="number_persons">Participants</string>
     <string name="totalCost">Total cost: 0 kr</string>
+    <string name="selectMenu">Choose menu</string>
     <string name="details_button">Create</string>
     <string name="details_header">Ingredients</string>
     <string-array name="dropdown">

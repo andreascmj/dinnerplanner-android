@@ -14,7 +14,7 @@ public class MenuActivity extends Activity {
         // Default call to load previous state
         super.onCreate(savedInstanceState);
 
-        ExampleView mainView = new ExampleView(findViewById(R.id.start_screen));
+        ExampleView mainView = new ExampleView(findViewById(R.id.planning_screen));
 
         setContentView(R.layout.activity_main);
     }

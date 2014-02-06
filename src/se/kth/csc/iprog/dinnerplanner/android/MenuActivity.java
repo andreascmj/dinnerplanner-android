@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -31,6 +34,7 @@ public class MenuActivity extends Activity {
 
         setContentView(R.layout.planning_screen);
         fillDropdown();
+        fillStarterView();
         Spinner spinner = (Spinner) findViewById(R.id.dropdown);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -47,6 +51,18 @@ public class MenuActivity extends Activity {
             });
 
 
+    }
+
+    private void fillStarterView() {
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.starterScrollView);
+        for (Dish s : dinner.getDishes()) {
+            ImageButton ib = new ImageButton(this);
+            int imageId = getResources().getIdentifier(s.getImage(), "drawable", null);
+            ib.setImageResource(imageId);
+            ib.setLayoutParams(lp);
+            layout.addView(ib);
+        }
     }
 
     private void fillDropdown() {

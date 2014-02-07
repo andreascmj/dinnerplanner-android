@@ -13,6 +13,7 @@ public class Dish {
 	int type; // starter (1), main (2) or desert (3)  
 	String image;
 	String description;
+    float price;
 	
 	Set<Ingredient> ingredients = new HashSet<Ingredient>();
 	
@@ -21,7 +22,19 @@ public class Dish {
 		this.type = type;
 		this.image = image;
 		this.description = description;
+
+        price = calcPrice();
 	}
+
+    public float getPrice() { return price; }
+
+    private float calcPrice() {
+        float price = 0;
+        for (Ingredient i : ingredients) {
+            price += i.getPrice();
+        }
+        return price;
+    }
 	
 	public String getName() {
 		return name;

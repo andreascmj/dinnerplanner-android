@@ -146,7 +146,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         iv.setImageResource(imageId);
 
         TextView tv = (TextView)v.findViewById(R.id.popupText);
-        tv.setText(s.getDescription());
+        tv.setText("Cost:" + s.getPrice()*dinner.getNumberOfGuests() + " kr\n(" + s.getPrice() + " kr/pers)");
 
 
         dialog.show();

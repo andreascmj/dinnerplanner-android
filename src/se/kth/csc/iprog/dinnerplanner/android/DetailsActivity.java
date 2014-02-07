@@ -51,13 +51,24 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
             Dish main = MenuActivity.dinner.getSelectedDish(2);
             Dish desert = MenuActivity.dinner.getSelectedDish(3);
 
-            ImageButton starterButton = (ImageButton) findViewById(R.id.starter_image);
-            ImageButton mainButton = (ImageButton) findViewById(R.id.main_image);
-            ImageButton desertButton = (ImageButton) findViewById(R.id.desert_image);
-
-            starterButton.setImageResource(getResources().getIdentifier(starter.getImage(), "drawable", getPackageName()));
-            mainButton.setImageResource(getResources().getIdentifier(main.getImage(), "drawable", getPackageName()));
-            desertButton.setImageResource(getResources().getIdentifier(desert.getImage(), "drawable", getPackageName()));
+            if(starter != null){
+                ImageButton starterButton = (ImageButton) findViewById(R.id.starter_image);
+                starterButton.setTag(starter);
+                starterButton.setOnClickListener(this);
+                starterButton.setImageResource(getResources().getIdentifier(starter.getImage(), "drawable", getPackageName()));
+            }
+            if(main != null) {
+                ImageButton mainButton = (ImageButton) findViewById(R.id.main_image);
+                mainButton.setTag(main);
+                mainButton.setOnClickListener(this);
+                mainButton.setImageResource(getResources().getIdentifier(main.getImage(), "drawable", getPackageName()));
+            }
+            if(desert != null) {
+                ImageButton desertButton = (ImageButton) findViewById(R.id.desert_image);
+                desertButton.setTag(desert);
+                desertButton.setOnClickListener(this);
+                desertButton.setImageResource(getResources().getIdentifier(desert.getImage(), "drawable", getPackageName()));
+            }
         }
     }
 

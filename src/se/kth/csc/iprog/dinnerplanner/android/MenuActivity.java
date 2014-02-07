@@ -96,7 +96,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
             if (dinner.getSelectedDish(s.getType()) == s) {
                 imageAndTextBox.setBackgroundColor(Color.rgb(145,32,77));
-                tv.setTextColor(Color.rgb(226,247,206));
+                tv.setTextColor(Color.rgb(226, 247, 206));
             }
 
 
@@ -134,6 +134,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
         View v = inflater.inflate(R.layout.popup_layout, null);
         builder.setView(v);
+
         if (dinner.getSelectedDish(s.getType()) == s) {
             builder.setPositiveButton(R.string.unchoose, new PopupOnClickListener(s, true));
         } else {
@@ -150,7 +151,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         iv.setImageResource(imageId);
 
         TextView tv = (TextView)v.findViewById(R.id.popupText);
-        tv.setText("Cost:" + s.getPrice()*dinner.getNumberOfGuests() + " kr\n(" + s.getPrice() + " kr/pers)");
+        tv.setText("Cost:" + s.getPrice() * dinner.getNumberOfGuests() + " kr\n(" + s.getPrice() + " kr/pers)");
 
 
         dialog.show();

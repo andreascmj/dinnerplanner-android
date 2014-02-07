@@ -19,25 +19,13 @@
         <ImageButton
             android:id="@+id/ingredient_image"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <ImageButton
-            android:id="@+id/starter_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <ImageButton
-            android:id="@+id/main_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <ImageButton
-            android:id="@+id/desert_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:maxWidth="150dp"
+            android:maxHeight="150dp" />
 
         </LinearLayout>
 
+    
     <TextView
         android:id="@+id/header_text"
         android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -58,11 +59,11 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     private void fillStarterView() {
 
         LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
-        populateDishType(1, starterlayout);
+        populateDishType(Dish.STARTER, starterlayout);
         LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
-        populateDishType(2, mainlayout);
+        populateDishType(Dish.MAIN, mainlayout);
         LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
-        populateDishType(3, desertlayout);
+        populateDishType(Dish.DESERT, desertlayout);
     }
 
     private void populateDishType(int type, LinearLayout layout) {
@@ -81,6 +82,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
             ib.setLayoutParams(lp);
+            ib.setTag(s);
             ib.setOnClickListener(this);
 
 
@@ -110,7 +112,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+        Dish s = (Dish)view.getTag();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("lolool");
+        AlertDialog dialog = builder.create();
     }
 
 

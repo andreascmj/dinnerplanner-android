@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
 
         setContentView(R.layout.details_screen);
         set_total_cost();
-        populatePics();
+        populateImageButtons();
     }
 
     public void set_details(){
@@ -52,9 +53,12 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         total_cost_text_box.setText("Total cost: " + MenuActivity.dinner.getTotalMenuPrice() + " kr");
     }
 
-    public void populatePics() {
+    public void populateImageButtons() {
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(150, 150);
         ImageButton ingredientsButton = (ImageButton) findViewById(R.id.ingredient_image);
         ingredientsButton.setImageResource(getResources().getIdentifier("ingredients", "drawable", getPackageName()));
+        ingredientsButton.setLayoutParams(lp);
+
         if(MenuActivity.dinner.getFullMenu().isEmpty()) {
 
         } else {
@@ -62,25 +66,27 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
             Dish main = MenuActivity.dinner.getSelectedDish(2);
             Dish desert = MenuActivity.dinner.getSelectedDish(3);
 
-            if(starter != null){
-                ImageButton starterButton = (ImageButton) findViewById(R.id.starter_image);
-                starterButton.setTag(starter);
-                starterButton.setOnClickListener(this);
-                starterButton.setImageResource(getResources().getIdentifier(starter.getImage(), "drawable", getPackageName()));
+            if(starter != null) {
+                createImageButton(starter);
             }
             if(main != null) {
-                ImageButton mainButton = (ImageButton) findViewById(R.id.main_image);
-                mainButton.setTag(main);
-                mainButton.setOnClickListener(this);
-                mainButton.setImageResource(getResources().getIdentifier(main.getImage(), "drawable", getPackageName()));
+                createImageButton(main);
             }
             if(desert != null) {
-                ImageButton desertButton = (ImageButton) findViewById(R.id.desert_image);
-                desertButton.setTag(desert);
-                desertButton.setOnClickListener(this);
-                desertButton.setImageResource(getResources().getIdentifier(desert.getImage(), "drawable", getPackageName()));
+                createImageButton(desert);
             }
         }
+    }
+
+    private void createImageButton(Dish dish) {
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(150, 150);
+
+        ImageButton ib = new ImageButton(this);
+        int imageId = getResources().getIdentifier(dish.getImage(), "drawable", getPackageName());
+        ib.setImageResource(imageId);
+        ib.setLayoutParams(lp);
+        ib.setTag(dish);
+        ib.setOnClickListener(this);
     }
 
     @Override

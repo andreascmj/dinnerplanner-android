@@ -1,14 +1,13 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -22,7 +21,7 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
 /**
  * Created by Jonas on 2014-02-06.
  */
-public class MenuActivity extends Activity implements View.OnClickListener{
+public class MenuActivity extends Activity implements View.OnClickListener {
 
     public static DinnerModel dinner = new DinnerModel();
 
@@ -57,35 +56,37 @@ public class MenuActivity extends Activity implements View.OnClickListener{
     }
 
     private void fillStarterView() {
+
         LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
-        for (Dish s : dinner.getDishesOfType(1)) {
-            ImageButton ib = new ImageButton(this);
-            ib.setTag(s.getName());
-            ib.setOnClickListener(this);
-            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
-            ib.setImageResource(imageId);
-            ib.setPadding(1,1,1,1);
-            starterlayout.addView(ib);
-        }
+        populateDishType(1, starterlayout);
         LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
-        for (Dish s : dinner.getDishesOfType(2)) {
-            ImageButton ib = new ImageButton(this);
-            ib.setTag(s.getName());
-            ib.setOnClickListener(this);
-            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
-            ib.setImageResource(imageId);
-            ib.setPadding(1, 1, 1, 1);
-            mainlayout.addView(ib);
-        }
+        populateDishType(2, mainlayout);
         LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
-        for (Dish s : dinner.getDishesOfType(3)) {
+        populateDishType(3, desertlayout);
+    }
+
+    private void populateDishType(int type, LinearLayout layout) {
+        for (Dish s : dinner.getDishesOfType(type)) {
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(150, 150);
+
+            LinearLayout imageAndTextBox = new LinearLayout(this);
+            imageAndTextBox.setOrientation(LinearLayout.VERTICAL);
+
+            TextView tv = new TextView(this);
+            tv.setText(s.getName());
+            tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            tv.setTextSize(13);
+
             ImageButton ib = new ImageButton(this);
-            ib.setTag(s.getName());
-            ib.setOnClickListener(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
-            ib.setPadding(1, 1, 1, 1);
-            desertlayout.addView(ib);
+            ib.setLayoutParams(lp);
+            ib.setOnClickListener(this);
+
+
+            layout.addView(imageAndTextBox);
+            imageAndTextBox.addView(ib);
+            imageAndTextBox.addView(tv);
         }
     }
 
@@ -98,7 +99,8 @@ public class MenuActivity extends Activity implements View.OnClickListener{
 
     private void update_total_cost(){
         TextView totalcost_box = (TextView)findViewById(R.id.total_cost);
-        totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
+        //totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
+        totalcost_box.setText("Total cost: " + dinner.getNumberOfGuests() + " kr"); //TODO remove this
     }
 
     public void details_click(View view){
@@ -111,11 +113,10 @@ public class MenuActivity extends Activity implements View.OnClickListener{
         }
     }
 
-
     @Override
     public void onClick(View view) {
-        ImageButton button_clicked = (ImageButton)view;
-        String dish = (String)button_clicked.getTag();
-        new AlertDialog.Builder(this).setTitle(dish).setNeutralButton("Choose", null).show();
+
     }
+
+
 }

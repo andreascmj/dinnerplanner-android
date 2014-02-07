@@ -78,7 +78,7 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         imageHolder.setPadding(5, 5, 5, 5);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(180, 180);
-        lp.setMargins(7, 14, 7, 14);
+        lp.setMargins(7, 14, 20, 14);
         ImageButton ingredientsButton = new ImageButton(this);
         ingredientsButton.setImageResource(getResources().getIdentifier("ingredients", "drawable", getPackageName()));
         ingredientsButton.setLayoutParams(lp);
@@ -141,6 +141,8 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         ImageButton pressed = (ImageButton)view;
         LinearLayout ll = (LinearLayout)pressed.getParent();
         LinearLayout ll2 = (LinearLayout)ll.getParent();
+        TextView tv = (TextView) ll.getChildAt(1);
+        tv.setTextColor(Color.rgb(226, 247, 206));
         for (int i = 0 ; i < ll2.getChildCount() ; i++){
             LinearLayout tempL = (LinearLayout)ll2.getChildAt(i);
             tempL.setBackgroundColor(Color.TRANSPARENT);

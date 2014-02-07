@@ -2,6 +2,7 @@ package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -126,12 +127,38 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         ImageView iv = (ImageView)v.findViewById(R.id.popupImage);
         int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
         iv.setImageResource(imageId);
-        //iv.setImageResource(R.drawable.icecream);
 
         TextView tv = (TextView)v.findViewById(R.id.popupText);
         tv.setText(s.getDescription());
 
+        builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s));
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
         dialog.show();
+    }
+
+    private class PopupOnClickListener implements DialogInterface.OnClickListener {
+
+        private Dish d;
+
+        public PopupOnClickListener(Dish d) {
+            this.d = d;
+        }
+
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            switch (d.getType()) {
+                case 1: dinner.setStarter(d);
+                case 2: dinner.setMain(d);
+                    default: dinner.setDesert(d);
+            }
+
+            dialogInterface.cancel();
+        }
     }
 
 

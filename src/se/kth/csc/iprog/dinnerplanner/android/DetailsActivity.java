@@ -19,10 +19,11 @@ public class DetailsActivity  extends Activity{
 
         setContentView(R.layout.details_screen);
         set_total_cost();
+        set_details_ingredients();
         populatePics();
     }
 
-    public void set_details(){
+    public void set_details_ingredients(){
         TextView details_text_box = (TextView)findViewById(R.id.details_text);
         String ingredients = "";
         for (Ingredient i :MenuActivity.dinner.getAllIngredients()){

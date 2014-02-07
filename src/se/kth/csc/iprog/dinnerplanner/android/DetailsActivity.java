@@ -29,7 +29,13 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         setContentView(R.layout.details_screen);
         set_details();
         set_total_cost();
+        set_persons();
         populateImageButtons();
+    }
+
+    private void set_persons() {
+        TextView persons = (TextView) findViewById(R.id.persons_detail);
+        persons.setText(MenuActivity.dinner.getNumberOfGuests() + " pers");
     }
 
     public void set_details(){

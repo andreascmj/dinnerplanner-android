@@ -142,14 +142,14 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         LinearLayout ll = (LinearLayout)pressed.getParent();
         LinearLayout ll2 = (LinearLayout)ll.getParent();
         TextView tv = (TextView) ll.getChildAt(1);
-        tv.setTextColor(Color.rgb(226, 247, 206));
         for (int i = 0 ; i < ll2.getChildCount() ; i++){
             LinearLayout tempL = (LinearLayout)ll2.getChildAt(i);
             tempL.setBackgroundColor(Color.TRANSPARENT);
 
             TextView text = (TextView) tempL.getChildAt(1);
-            text.setTextColor(Color.rgb(255, 255, 255));
+            text.setTextColor(Color.rgb(0, 0, 0));
         }
+        tv.setTextColor(Color.rgb(226, 247, 206));
         ll.setBackgroundColor(Color.rgb(145, 32, 77));
         if(pressed.getTag() == "ingredients") {
             set_details();

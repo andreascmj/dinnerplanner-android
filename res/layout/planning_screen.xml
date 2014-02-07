@@ -105,7 +105,6 @@
         android:layout_height="wrap_content"
         android:text="@string/details_button"
         android:gravity="center"
-        android:color="#91204d"
 
         android:onClick="details_click"
         style="@style/MyActionBar"

@@ -61,6 +61,9 @@ public class DinnerModel implements IDinnerModel{
         Ingredient dish3ing1 = new Ingredient("Ice Cream", 120, "g", 15);
         dish3.addIngredient(dish3ing1);
         dishes.add(dish3);
+        setStarter(dish1);
+        setMain(dish2);
+        setDesert(dish3);
 	}
 	/**
 	 * Returns the set of dishes

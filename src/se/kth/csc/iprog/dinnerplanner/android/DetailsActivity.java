@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.HashSet;
+
 import se.kth.csc.iprog.dinnerplanner.android.view.ExampleView;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import se.kth.csc.iprog.dinnerplanner.model.Ingredient;

@@ -38,6 +38,14 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
     public void set_details_dish(Dish dish){
         TextView details_text_box = (TextView)findViewById(R.id.details_text);
         details_text_box.setText(dish.getDescription());
+        TextView header_details_text_box = (TextView)findViewById(R.id.header_text);
+        int type = dish.getType();
+        switch(type){
+            case(1): header_details_text_box.setText("Starter");
+            case(2): header_details_text_box.setText("Main");
+            case(3): header_details_text_box.setText("Desert");
+            default: header_details_text_box.setText("Ingredients");
+        }
     }
 
     public void set_total_cost(){
@@ -46,6 +54,8 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
     }
 
     public void populatePics() {
+        ImageButton ingredientsButton = (ImageButton) findViewById(R.id.ingredient_image);
+        ingredientsButton.setImageResource(getResources().getIdentifier("ingredients", "drawable", getPackageName()));
         if(MenuActivity.dinner.getFullMenu().isEmpty()) {
 
         } else {

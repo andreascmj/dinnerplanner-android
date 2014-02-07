@@ -27,6 +27,9 @@
         <activity
             android:name="se.kth.csc.iprog.dinnerplanner.android.MenuActivity">
         </activity>
+        <activity
+            android:name="se.kth.csc.iprog.dinnerplanner.android.DetailsActivity">
+        </activity>
     </application>
 
 </manifest>

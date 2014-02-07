@@ -146,6 +146,9 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         for (int i = 0 ; i < ll2.getChildCount() ; i++){
             LinearLayout tempL = (LinearLayout)ll2.getChildAt(i);
             tempL.setBackgroundColor(Color.TRANSPARENT);
+
+            TextView text = (TextView) tempL.getChildAt(1);
+            text.setTextColor(Color.rgb(255, 255, 255));
         }
         ll.setBackgroundColor(Color.rgb(145, 32, 77));
         if(pressed.getTag() == "ingredients") {

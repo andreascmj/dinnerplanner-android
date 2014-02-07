@@ -35,11 +35,12 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
     public void set_details(){
         TextView details_text_box = (TextView)findViewById(R.id.details_text);
         TextView header = (TextView) findViewById(R.id.header_text);
-        String ingredients = "";
-        for (Ingredient i :MenuActivity.dinner.getAllIngredients()){
-            ingredients = ingredients + i.getName() + " \n";
+        StringBuilder sb = new StringBuilder();
+        for (Ingredient i : MenuActivity.dinner.getAllIngredients()){
+            sb.append(i.getQuantity() + " " + i.getUnit()+ " ");
+            sb.append(i.getName() + " \n");
         }
-        details_text_box.setText(ingredients);
+        details_text_box.setText(sb.toString());
         header.setText("Ingredients");
     }
     public void set_details_dish(Dish dish){

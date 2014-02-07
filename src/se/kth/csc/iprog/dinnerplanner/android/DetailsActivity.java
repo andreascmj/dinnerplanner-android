@@ -63,7 +63,7 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
     }
 
     public void populateImageButtons() {
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(150, 150);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(180, 180);
         ImageButton ingredientsButton = (ImageButton) findViewById(R.id.ingredient_image);
         ingredientsButton.setImageResource(getResources().getIdentifier("ingredients", "drawable", getPackageName()));
         ingredientsButton.setLayoutParams(lp);

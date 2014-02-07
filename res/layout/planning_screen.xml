@@ -107,7 +107,9 @@
         android:gravity="center"
         android:color="#91204d"
 
-        android:onClick="details_click" />
+        android:onClick="details_click"
+        style="@style/MyActionBar"
+        android:textColor="#E2F7CE" />
 
     </LinearLayout>
 

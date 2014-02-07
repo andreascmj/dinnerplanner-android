@@ -162,6 +162,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     default: dinner.setDesert(d);
             }
 
+            fillStarterView();
             dialogInterface.cancel();
         }
     }

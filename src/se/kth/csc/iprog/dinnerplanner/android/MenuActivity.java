@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -114,8 +115,16 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         Dish s = (Dish)view.getTag();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("lolool");
+        builder.setTitle(s.getName());
+        ImageView iv = (ImageView)findViewById(R.id.popupImage);
+        int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
+        iv.setImageResource(imageId);
+
+        TextView tv = (TextView)findViewById(R.id.popupText);
+        tv.setText(s.getDescription());
+
         AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 

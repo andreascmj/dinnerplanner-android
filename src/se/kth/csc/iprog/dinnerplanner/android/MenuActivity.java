@@ -123,6 +123,12 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
         View v = inflater.inflate(R.layout.popup_layout, null);
         builder.setView(v);
+        builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s));
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
         AlertDialog dialog = builder.create();
         ImageView iv = (ImageView)v.findViewById(R.id.popupImage);
         int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
@@ -131,12 +137,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         TextView tv = (TextView)v.findViewById(R.id.popupText);
         tv.setText(s.getDescription());
 
-        builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s));
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
 
         dialog.show();
     }

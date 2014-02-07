@@ -91,11 +91,12 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
     }
 
     private void createImageButton(Dish dish, LinearLayout ll) {
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(150, 150);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(180, 180);
 
         ImageButton ib = new ImageButton(this);
         int imageId = getResources().getIdentifier(dish.getImage(), "drawable", getPackageName());
         ib.setImageResource(imageId);
+        lp.setMargins(10, 0, 0, 0);
         ib.setLayoutParams(lp);
         ib.setTag(dish);
         ib.setOnClickListener(this);

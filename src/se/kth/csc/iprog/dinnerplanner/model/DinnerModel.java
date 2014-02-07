@@ -69,7 +69,7 @@ public class DinnerModel implements IDinnerModel{
         dish4.addIngredient(dish4ing2);
         dishes.add(dish4);
 
-        Dish dish5 = new Dish("Ice Cream", Dish.MAIN, "tacos", "Mix the meat with some taco spice and water while in the pan. \nChop the vegetables and put in bowls. \nHeat the bread in the microwave and serve.");
+        Dish dish5 = new Dish("Tacos", Dish.MAIN, "tacos", "Mix the meat with some taco spice and water while in the pan. \nChop the vegetables and put in bowls. \nHeat the bread in the microwave and serve.");
         Ingredient dish5ing1 = new Ingredient("Minced Meat", 125, "g", 10);
         Ingredient dish5ing2 = new Ingredient("Taco Spice", 0.25, "st", 6);
         Ingredient dish5ing3 = new Ingredient("Tomatoes", 1, "st", 4);

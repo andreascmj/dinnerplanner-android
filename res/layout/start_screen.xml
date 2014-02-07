@@ -12,33 +12,38 @@
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/g1" />
+        android:text="@string/g1"
+        android:textSize="25dp" />
     <TextView
         android:id="@+id/greeting_2"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/g2" />
+        android:text="@string/g2"
+        android:textSize="15dp" />
     <TextView
         android:id="@+id/greeting_3"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/g3" />
+        android:text="@string/g3"
+        android:textSize="15dp" />
     <TextView
         android:id="@+id/greeting_4"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/g4" />
+        android:text="@string/g4"
+        android:textSize="15dp" />
 
     <Button
         android:id="@+id/start_button"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/start_button_text"
         android:clickable="true"
-        android:onClick="start_button_click" />
+        android:onClick="start_button_click"
+        style="@style/MyActionBar" />
 
 </LinearLayout>

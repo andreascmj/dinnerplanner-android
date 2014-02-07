@@ -122,13 +122,13 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
         builder.setView(inflater.inflate(R.layout.popup_layout, null));
         AlertDialog dialog = builder.create();
-        ImageView iv = (ImageView)findViewById(R.id.popupImage);
+        ImageView iv = (ImageView) findViewById(R.id.popupImage);
         int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
-        //iv.setImageResource(imageId);
-        iv.setImageResource(R.drawable.icecream);
+        // iv.setImageResource(imageId);
+        //iv.setImageResource(R.drawable.icecream);
 
-        TextView tv = (TextView)findViewById(R.id.popupText);
-        tv.setText(s.getDescription());
+        TextView tv = (TextView) findViewById(R.id.popupText);
+        //tv.setText(s.getDescription());
 
         dialog.show();
     }

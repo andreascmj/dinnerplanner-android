@@ -75,10 +75,11 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
     private void populateDishType(int type, LinearLayout layout) {
         for (Dish s : dinner.getDishesOfType(type)) {
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(150, 150);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(150, 150);;
 
             LinearLayout imageAndTextBox = new LinearLayout(this);
             imageAndTextBox.setOrientation(LinearLayout.VERTICAL);
+            imageAndTextBox.setPadding(5, 5, 5, 5);
 
             TextView tv = new TextView(this);
             tv.setText(s.getName());
@@ -88,12 +89,14 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             ImageButton ib = new ImageButton(this);
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
+
             ib.setLayoutParams(lp);
             ib.setTag(s);
             ib.setOnClickListener(this);
 
             if (dinner.getSelectedDish(s.getType()) == s) {
-                imageAndTextBox.setBackgroundColor(Color.rgb(45, 02, 178));
+                imageAndTextBox.setBackgroundColor(Color.rgb(145,32,77));
+                tv.setTextColor(Color.rgb(226,247,206));
             }
 
 
@@ -165,6 +168,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     default: dinner.setDesert(d);
             }
 
+            update_total_cost();
             fillStarterView();
             dialogInterface.cancel();
         }

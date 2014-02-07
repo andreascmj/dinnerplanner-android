@@ -95,7 +95,8 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             ib.setOnClickListener(this);
 
             if (dinner.getSelectedDish(s.getType()) == s) {
-                imageAndTextBox.setBackgroundColor(Color.rgb(45, 02, 178));
+                imageAndTextBox.setBackgroundColor(Color.rgb(145,32,77));
+                tv.setTextColor(Color.rgb(226,247,206));
             }
 
 
@@ -167,6 +168,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     default: dinner.setDesert(d);
             }
 
+            update_total_cost();
             fillStarterView();
             dialogInterface.cancel();
         }

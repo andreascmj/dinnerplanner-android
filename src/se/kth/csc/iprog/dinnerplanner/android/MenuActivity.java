@@ -19,7 +19,7 @@ import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 /**
- * Created by Jonas on 2014-02-06. das
+ * Created by Jonas on 2014-02-06.
  */
 public class MenuActivity extends Activity implements View.OnClickListener {
 

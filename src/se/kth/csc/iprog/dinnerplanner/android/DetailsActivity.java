@@ -19,7 +19,7 @@ public class DetailsActivity  extends Activity{
 
         setContentView(R.layout.details_screen);
         set_total_cost();
-        populatePics();
+        populateImageButtons();
     }
 
     public void set_details(){
@@ -36,7 +36,7 @@ public class DetailsActivity  extends Activity{
         total_cost_text_box.setText("Total cost: " + MenuActivity.dinner.getTotalMenuPrice() + " kr");
     }
 
-    public void populatePics() {
+    public void populateImageButtons() {
         if(MenuActivity.dinner.getFullMenu().isEmpty()) {
 
         } else {
@@ -44,13 +44,25 @@ public class DetailsActivity  extends Activity{
             Dish main = MenuActivity.dinner.getSelectedDish(2);
             Dish desert = MenuActivity.dinner.getSelectedDish(3);
 
-            ImageButton starterButton = (ImageButton) findViewById(R.id.starter_image);
-            ImageButton mainButton = (ImageButton) findViewById(R.id.main_image);
-            ImageButton desertButton = (ImageButton) findViewById(R.id.desert_image);
+            if(starter != null) {
+                ImageButton starterButton = (ImageButton) findViewById(R.id.starter_image);
+                starterButton.setImageResource(getResources().getIdentifier(starter.getImage(), "drawable", getPackageName()));
+                starterButton.setTag(starter);
+                starterButton.setOnClickListener(this);
+            }
+            if(main != null) {
+                ImageButton mainButton = (ImageButton) findViewById(R.id.main_image);
+                mainButton.setImageResource(getResources().getIdentifier(main.getImage(), "drawable", getPackageName()));
+                mainButton.setTag(main);
+                mainButton.setOnClickListener(this);
+            }
+            if(desert != null) {
+                ImageButton desertButton = (ImageButton) findViewById(R.id.desert_image);
+                desertButton.setImageResource(getResources().getIdentifier(desert.getImage(), "drawable", getPackageName()));
+                desertButton.setTag(main);
+                desertButton.setOnClickListener(this);
+            }
 
-            starterButton.setImageResource(getResources().getIdentifier(starter.getImage(), "drawable", getPackageName()));
-            mainButton.setImageResource(getResources().getIdentifier(main.getImage(), "drawable", getPackageName()));
-            desertButton.setImageResource(getResources().getIdentifier(desert.getImage(), "drawable", getPackageName()));
         }
     }
-}
+

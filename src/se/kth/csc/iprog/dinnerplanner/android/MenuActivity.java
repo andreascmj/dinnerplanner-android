@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -88,6 +89,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             ib.setTag(s);
             ib.setOnClickListener(this);
 
+            if (dinner.getSelectedDish(s.getType()) == s) {
+                imageAndTextBox.setBackgroundColor(Color.rgb(45, 02, 178));
+            }
+
 
             layout.addView(imageAndTextBox);
             imageAndTextBox.addView(ib);
@@ -152,8 +157,8 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
             switch (d.getType()) {
-                case 1: dinner.setStarter(d);
-                case 2: dinner.setMain(d);
+                case 1: dinner.setStarter(d); break;
+                case 2: dinner.setMain(d); break;
                     default: dinner.setDesert(d);
             }
 

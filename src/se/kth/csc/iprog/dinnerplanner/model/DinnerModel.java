@@ -57,15 +57,35 @@ public class DinnerModel implements IDinnerModel{
 		dish2.addIngredient(dish2ing11);
 		dishes.add(dish2);
 
-        Dish dish3 = new Dish("Ice Cream", Dish.DESERT, "icecream", "Put whatever ice cream you want.");
+        Dish dish3 = new Dish("Ice Cream", Dish.DESERT, "icecream", "Put whatever ice cream you want in a bowl.");
         Ingredient dish3ing1 = new Ingredient("Ice Cream", 120, "g", 15);
         dish3.addIngredient(dish3ing1);
         dishes.add(dish3);
 
-        Dish dish4 = new Dish("Other Ice Cream", Dish.DESERT, "icecream", "Put whatever ice cream you want.");
+        Dish dish4 = new Dish("Ice Cream with Chocolate Sauce", Dish.DESERT, "icecream2", "Put whatever ice cream you want. \nAdd Chocolate Sauce");
         Ingredient dish4ing1 = new Ingredient("Ice Cream", 120, "g", 15);
-        dish3.addIngredient(dish3ing1);
+        Ingredient dish4ing2 = new Ingredient("Chocolate Sauce", 20, "ml", 3);
+        dish4.addIngredient(dish4ing1);
+        dish4.addIngredient(dish4ing2);
         dishes.add(dish4);
+
+        Dish dish5 = new Dish("Tacos", Dish.MAIN, "tacos", "Mix the meat with some taco spice and water while in the pan. \nChop the vegetables and put in bowls. \nHeat the bread in the microwave and serve.");
+        Ingredient dish5ing1 = new Ingredient("Minced Meat", 125, "g", 10);
+        Ingredient dish5ing2 = new Ingredient("Taco Spice", 0.25, "st", 6);
+        Ingredient dish5ing3 = new Ingredient("Tomatoes", 1, "st", 4);
+        Ingredient dish5ing4 = new Ingredient("Corn",70, "g", 3);
+        dish5.addIngredient(dish5ing1);
+        dish5.addIngredient(dish5ing2);
+        dish5.addIngredient(dish5ing3);
+        dish5.addIngredient(dish5ing4);
+        dishes.add(dish5);
+
+        Dish dish6 = new Dish("Halloumi", Dish.STARTER, "halloumi", "Put halloumi on a plate. \nAdd tomatoes.");
+        Ingredient dish6ing1 = new Ingredient("Halloumi", 60, "g", 15);
+        Ingredient dish6ing2 = new Ingredient("Tomatoes", 1, "st", 4);
+        dish6.addIngredient(dish6ing1);
+        dish6.addIngredient(dish6ing2);
+        dishes.add(dish6);
 
 	}
 	/**

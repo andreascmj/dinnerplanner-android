@@ -95,12 +95,20 @@
 
     </HorizontalScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom">
     <Button
         android:id="@+id/go_to_details_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/details_button"
         android:gravity="center"
-        android:onClick="details_click"/>
+        android:color=""
+
+        android:onClick="details_click" />
+
+    </LinearLayout>
 
 </LinearLayout>

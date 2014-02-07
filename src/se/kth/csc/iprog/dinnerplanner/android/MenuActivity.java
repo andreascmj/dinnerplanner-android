@@ -2,7 +2,9 @@ package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -61,10 +63,13 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     private void fillStarterView() {
 
         LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
+        starterlayout.removeAllViews();
         populateDishType(Dish.STARTER, starterlayout);
         LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
+        mainlayout.removeAllViews();
         populateDishType(Dish.MAIN, mainlayout);
         LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
+        desertlayout.removeAllViews();
         populateDishType(Dish.DESERT, desertlayout);
     }
 
@@ -86,6 +91,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             ib.setLayoutParams(lp);
             ib.setTag(s);
             ib.setOnClickListener(this);
+
+            if (dinner.getSelectedDish(s.getType()) == s) {
+                imageAndTextBox.setBackgroundColor(Color.rgb(45, 02, 178));
+            }
 
 
             layout.addView(imageAndTextBox);
@@ -120,17 +129,45 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
         LayoutInflater inflater = this.getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.popup_layout, null));
+        View v = inflater.inflate(R.layout.popup_layout, null);
+        builder.setView(v);
+        builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s));
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
         AlertDialog dialog = builder.create();
-        ImageView iv = (ImageView)findViewById(R.id.popupImage);
+        ImageView iv = (ImageView)v.findViewById(R.id.popupImage);
         int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
-        //iv.setImageResource(imageId);
-        iv.setImageResource(R.drawable.icecream);
+        iv.setImageResource(imageId);
 
-        TextView tv = (TextView)findViewById(R.id.popupText);
+        TextView tv = (TextView)v.findViewById(R.id.popupText);
         tv.setText(s.getDescription());
 
+
         dialog.show();
+    }
+
+    private class PopupOnClickListener implements DialogInterface.OnClickListener {
+
+        private Dish d;
+
+        public PopupOnClickListener(Dish d) {
+            this.d = d;
+        }
+
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            switch (d.getType()) {
+                case 1: dinner.setStarter(d); break;
+                case 2: dinner.setMain(d); break;
+                    default: dinner.setDesert(d);
+            }
+
+            fillStarterView();
+            dialogInterface.cancel();
+        }
     }
 
 

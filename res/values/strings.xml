@@ -17,6 +17,8 @@
     <string name="starter">Starter</string>
     <string name="main">Main</string>
     <string name="desert">Desert</string>
+    <string name="choose">Choose</string>
+    <string name="cancel">Cancel</string>
     <string-array name="dropdown">
         <item>1</item><item>2</item><item>3</item><item>4</item><item>5</item><item>6</item><item>7</item><item>8</item>
     </string-array>

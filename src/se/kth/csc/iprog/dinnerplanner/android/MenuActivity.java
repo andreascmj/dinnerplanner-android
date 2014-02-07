@@ -134,7 +134,11 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
         View v = inflater.inflate(R.layout.popup_layout, null);
         builder.setView(v);
-        builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s));
+        if (dinner.getSelectedDish(s.getType()) == s) {
+            builder.setPositiveButton(R.string.unchoose, new PopupOnClickListener(s, true));
+        } else {
+            builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s, false));
+        }
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
@@ -155,17 +159,27 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     private class PopupOnClickListener implements DialogInterface.OnClickListener {
 
         private Dish d;
+        private Boolean selected;
 
-        public PopupOnClickListener(Dish d) {
+        public PopupOnClickListener(Dish d, Boolean selected) {
             this.d = d;
+            this.selected = selected;
         }
 
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
-            switch (d.getType()) {
-                case 1: dinner.setStarter(d); break;
-                case 2: dinner.setMain(d); break;
+            if (selected) {
+                switch (d.getType()) {
+                    case 1: dinner.setStarter(null); break;
+                    case 2: dinner.setMain(null); break;
+                    default: dinner.setDesert(null);
+                }
+            } else {
+                switch (d.getType()) {
+                    case 1: dinner.setStarter(d); break;
+                    case 2: dinner.setMain(d); break;
                     default: dinner.setDesert(d);
+                }
             }
 
             update_total_cost();

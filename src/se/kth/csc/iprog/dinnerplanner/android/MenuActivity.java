@@ -104,13 +104,8 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     }
 
     public void details_click(View view){
-        if (dinner.getFullMenu().isEmpty()){
-
-        }
-        else{
-            Intent details_screen_navigation = new Intent(this, DetailsActivity.class);
-            startActivity(details_screen_navigation);
-        }
+        Intent details_screen_navigation = new Intent(this, DetailsActivity.class);
+        startActivity(details_screen_navigation);
     }
 
     @Override

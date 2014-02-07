@@ -43,7 +43,7 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         TextView header = (TextView) findViewById(R.id.header_text);
         StringBuilder sb = new StringBuilder();
         for (Ingredient i : MenuActivity.dinner.getAllIngredients()){
-            double amount = i.getQuantity()*MenuActivity.dinner.getNumberOfGuests();
+            double amount = Math.ceil(i.getQuantity()*MenuActivity.dinner.getNumberOfGuests());
             sb.append(amount + " " + i.getUnit()+ " ");
             sb.append(i.getName() + " \n");
         }

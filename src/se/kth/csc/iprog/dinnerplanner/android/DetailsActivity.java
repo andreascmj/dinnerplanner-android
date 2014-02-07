@@ -1,9 +1,11 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.text.Layout;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -43,7 +45,7 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         TextView header = (TextView) findViewById(R.id.header_text);
         StringBuilder sb = new StringBuilder();
         for (Ingredient i : MenuActivity.dinner.getAllIngredients()){
-            double amount = Math.ceil(i.getQuantity()*MenuActivity.dinner.getNumberOfGuests());
+            double amount = Math.ceil(i.getQuantity() * MenuActivity.dinner.getNumberOfGuests());
             sb.append(amount + " " + i.getUnit()+ " ");
             sb.append(i.getName() + " \n");
         }
@@ -69,12 +71,27 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
     }
 
     public void populateImageButtons() {
+        LinearLayout ll = (LinearLayout) findViewById(R.id.details_lin_layout);
+
+        LinearLayout imageHolder = new LinearLayout(this);
+        imageHolder.setOrientation(LinearLayout.VERTICAL);
+        imageHolder.setPadding(5, 5, 5, 5);
+
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(180, 180);
-        ImageButton ingredientsButton = (ImageButton) findViewById(R.id.ingredient_image);
+        lp.setMargins(7, 14, 7, 14);
+        ImageButton ingredientsButton = new ImageButton(this);
         ingredientsButton.setImageResource(getResources().getIdentifier("ingredients", "drawable", getPackageName()));
         ingredientsButton.setLayoutParams(lp);
         ingredientsButton.setTag("ingredients");
         ingredientsButton.setOnClickListener(this);
+
+        ll.addView(imageHolder);
+        imageHolder.addView(ingredientsButton);
+
+        TextView tv = new TextView(this);
+        tv.setText("Ingredients");
+        tv.setGravity(Gravity.CENTER);
+        imageHolder.addView(tv);
 
         if(MenuActivity.dinner.getFullMenu().isEmpty()) {
 
@@ -83,7 +100,6 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
             Dish main = MenuActivity.dinner.getSelectedDish(2);
             Dish desert = MenuActivity.dinner.getSelectedDish(3);
 
-            LinearLayout ll = (LinearLayout) findViewById(R.id.details_lin_layout);
             if(starter != null) {
                 createImageButton(starter, ll);
             }
@@ -99,19 +115,37 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
     private void createImageButton(Dish dish, LinearLayout ll) {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(180, 180);
 
+        LinearLayout imageHolder = new LinearLayout(this);
+        imageHolder.setOrientation(LinearLayout.VERTICAL);
+        imageHolder.setPadding(5, 5, 5, 5);
+
         ImageButton ib = new ImageButton(this);
         int imageId = getResources().getIdentifier(dish.getImage(), "drawable", getPackageName());
         ib.setImageResource(imageId);
-        lp.setMargins(10, 0, 0, 0);
+        lp.setMargins(7, 14, 7, 14);
         ib.setLayoutParams(lp);
         ib.setTag(dish);
         ib.setOnClickListener(this);
-        ll.addView(ib);
+
+        ll.addView(imageHolder);
+        imageHolder.addView(ib);
+
+        TextView tv = new TextView(this);
+        tv.setText(dish.getName());
+        tv.setGravity(Gravity.CENTER);
+        imageHolder.addView(tv);
     }
 
     @Override
     public void onClick(View view) {
         ImageButton pressed = (ImageButton)view;
+        LinearLayout ll = (LinearLayout)pressed.getParent();
+        LinearLayout ll2 = (LinearLayout)ll.getParent();
+        for (int i = 0 ; i < ll2.getChildCount() ; i++){
+            LinearLayout tempL = (LinearLayout)ll2.getChildAt(i);
+            tempL.setBackgroundColor(Color.TRANSPARENT);
+        }
+        ll.setBackgroundColor(Color.rgb(145, 32, 77));
         if(pressed.getTag() == "ingredients") {
             set_details();
             return;

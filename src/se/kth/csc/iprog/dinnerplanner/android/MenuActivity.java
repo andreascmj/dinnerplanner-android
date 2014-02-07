@@ -21,7 +21,7 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
 /**
  * Created by Jonas on 2014-02-06.
  */
-public class MenuActivity extends Activity {
+public class MenuActivity extends Activity implements View.OnClickListener {
 
     public static DinnerModel dinner = new DinnerModel();
 
@@ -81,11 +81,8 @@ public class MenuActivity extends Activity {
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
             ib.setLayoutParams(lp);
-            ib.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // TODO add pop-up code
-                }
-            });
+            ib.setOnClickListener(this);
+
 
             layout.addView(imageAndTextBox);
             imageAndTextBox.addView(ib);
@@ -114,6 +111,11 @@ public class MenuActivity extends Activity {
             Intent details_screen_navigation = new Intent(this, DetailsActivity.class);
             startActivity(details_screen_navigation);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 
 

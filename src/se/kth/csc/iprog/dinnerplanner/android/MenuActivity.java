@@ -63,10 +63,13 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     private void fillStarterView() {
 
         LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
+        starterlayout.removeAllViews();
         populateDishType(Dish.STARTER, starterlayout);
         LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
+        mainlayout.removeAllViews();
         populateDishType(Dish.MAIN, mainlayout);
         LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
+        desertlayout.removeAllViews();
         populateDishType(Dish.DESERT, desertlayout);
     }
 

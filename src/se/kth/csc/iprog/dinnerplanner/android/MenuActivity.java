@@ -19,7 +19,7 @@ import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 /**
- * Created by Jonas on 2014-02-06.
+ * Created by Jonas on 2014-02-06. das
  */
 public class MenuActivity extends Activity {
 

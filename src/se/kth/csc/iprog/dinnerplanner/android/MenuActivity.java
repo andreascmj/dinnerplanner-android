@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -116,9 +117,14 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         Dish s = (Dish)view.getTag();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(s.getName());
+
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        builder.setView(inflater.inflate(R.layout.popup_layout, null));
         ImageView iv = (ImageView)findViewById(R.id.popupImage);
         int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
-        iv.setImageResource(imageId);
+        //iv.setImageResource(imageId);
+        iv.setImageResource(R.drawable.icecream);
 
         TextView tv = (TextView)findViewById(R.id.popupText);
         tv.setText(s.getDescription());

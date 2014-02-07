@@ -16,7 +16,7 @@
         android:id="@+id/popupText"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="hej"
+        android:layout_gravity="center_vertical"
         android:padding="10dp"/>
 
 

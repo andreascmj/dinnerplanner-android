@@ -26,7 +26,7 @@ public class Dish {
         price = calcPrice();
 	}
 
-    public float getPrice() { return price; }
+    public float getPrice() { return calcPrice(); }
 
     private float calcPrice() {
         float price = 0;

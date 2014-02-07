@@ -112,8 +112,8 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
     private void update_total_cost(){
         TextView totalcost_box = (TextView)findViewById(R.id.total_cost);
-        //totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
-        totalcost_box.setText("Total cost: " + dinner.getNumberOfGuests() + " kr"); //TODO remove this
+        totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
+        //totalcost_box.setText("Total cost: " + dinner.getNumberOfGuests() + " kr"); //TODO remove this
     }
 
     public void details_click(View view){

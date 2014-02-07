@@ -37,7 +37,8 @@ public class DetailsActivity  extends Activity implements View.OnClickListener{
         TextView header = (TextView) findViewById(R.id.header_text);
         StringBuilder sb = new StringBuilder();
         for (Ingredient i : MenuActivity.dinner.getAllIngredients()){
-            sb.append(i.getQuantity() + " " + i.getUnit()+ " ");
+            double amount = i.getQuantity()*MenuActivity.dinner.getNumberOfGuests();
+            sb.append(amount + " " + i.getUnit()+ " ");
             sb.append(i.getName() + " \n");
         }
         details_text_box.setText(sb.toString());

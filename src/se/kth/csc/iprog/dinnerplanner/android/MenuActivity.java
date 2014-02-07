@@ -81,6 +81,12 @@ public class MenuActivity extends Activity {
             int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
             ib.setImageResource(imageId);
             ib.setLayoutParams(lp);
+            ib.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // TODO add pop-up code
+                }
+            });
+
             layout.addView(imageAndTextBox);
             imageAndTextBox.addView(ib);
             imageAndTextBox.addView(tv);

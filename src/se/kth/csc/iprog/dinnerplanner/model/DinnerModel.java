@@ -164,6 +164,7 @@ public class DinnerModel implements IDinnerModel{
         return price;
     }
 
+
     public void setDesert(Dish desert) {
         this.desert = desert;
     }

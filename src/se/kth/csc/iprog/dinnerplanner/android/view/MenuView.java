@@ -16,6 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import se.kth.csc.iprog.dinnerplanner.android.DetailsActivity;
 import se.kth.csc.iprog.dinnerplanner.android.MenuActivity;
 import se.kth.csc.iprog.dinnerplanner.android.R;
@@ -25,7 +28,7 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
 /**
  * Created by Jonas on 2014-02-17.
  */
-public class MenuView implements View.OnClickListener{
+public class MenuView implements  Observer {
     View view;
     Activity menu;
 
@@ -34,22 +37,9 @@ public class MenuView implements View.OnClickListener{
         // store in the class the reference to the Android View
         this.menu = menu;
         this.view = view;
+        MenuActivity.dinner.addObserver(this);
         fillDropdown();
         fillStarterView();
-        Spinner spinner = (Spinner) this.menu.findViewById(R.id.dropdown);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                int selected = (int) l+1;
-                MenuActivity.dinner.setNumberOfGuests(selected);
-                update_total_cost();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                MenuActivity.dinner.setNumberOfGuests(0);
-                update_total_cost();
-            }
-        });
     }
 
     private void fillStarterView() {
@@ -84,7 +74,7 @@ public class MenuView implements View.OnClickListener{
 
             ib.setLayoutParams(lp);
             ib.setTag(s);
-            ib.setOnClickListener(this);
+            ib.setOnClickListener((View.OnClickListener) menu);
 
             if ( MenuActivity.dinner.getSelectedDish(s.getType()) == s) {
                 imageAndTextBox.setBackgroundColor(Color.rgb(145, 32, 77));
@@ -108,71 +98,76 @@ public class MenuView implements View.OnClickListener{
     private void update_total_cost(){
         TextView totalcost_box = (TextView)menu.findViewById(R.id.total_cost);
         totalcost_box.setText("Total cost: " +  MenuActivity.dinner.getTotalMenuPrice() + " kr");
-        //totalcost_box.setText("Total cost: " + dinner.getNumberOfGuests() + " kr"); //TODO remove this
     }
+
+//    @Override
+//    public void onClick(View view) {
+//        Dish s = (Dish)view.getTag();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(menu);
+//        builder.setTitle(s.getName());
+//
+//        LayoutInflater inflater = (LayoutInflater) menu.getSystemService( menu.LAYOUT_INFLATER_SERVICE );
+//
+//        View v = inflater.inflate(R.layout.popup_layout, null);
+//        builder.setView(v);
+//
+//        if ( MenuActivity.dinner.getSelectedDish(s.getType()) == s) {
+//            builder.setPositiveButton(R.string.unchoose, new PopupOnClickListener(s, true));
+//        } else {
+//            builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s, false));
+//        }
+//        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                dialogInterface.cancel();
+//            }
+//        });
+//        AlertDialog dialog = builder.create();
+//        ImageView iv = (ImageView)v.findViewById(R.id.popupImage);
+//        int imageId = menu.getResources().getIdentifier(s.getImage(), "drawable", menu.getPackageName());
+//        iv.setImageResource(imageId);
+//
+//        TextView tv = (TextView)v.findViewById(R.id.popupText);
+//        tv.setText("Cost:" + s.getPrice() *  MenuActivity.dinner.getNumberOfGuests() + " kr\n(" + s.getPrice() + " kr/pers)");
+//
+//
+//        dialog.show();
+//    }
 
     @Override
-    public void onClick(View view) {
-        Dish s = (Dish)view.getTag();
-        AlertDialog.Builder builder = new AlertDialog.Builder(menu);
-        builder.setTitle(s.getName());
-
-        LayoutInflater inflater = (LayoutInflater) menu.getSystemService( menu.LAYOUT_INFLATER_SERVICE );
-
-        View v = inflater.inflate(R.layout.popup_layout, null);
-        builder.setView(v);
-
-        if ( MenuActivity.dinner.getSelectedDish(s.getType()) == s) {
-            builder.setPositiveButton(R.string.unchoose, new PopupOnClickListener(s, true));
-        } else {
-            builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s, false));
-        }
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        ImageView iv = (ImageView)v.findViewById(R.id.popupImage);
-        int imageId = menu.getResources().getIdentifier(s.getImage(), "drawable", menu.getPackageName());
-        iv.setImageResource(imageId);
-
-        TextView tv = (TextView)v.findViewById(R.id.popupText);
-        tv.setText("Cost:" + s.getPrice() *  MenuActivity.dinner.getNumberOfGuests() + " kr\n(" + s.getPrice() + " kr/pers)");
-
-
-        dialog.show();
+    public void update(Observable observable, Object o) {
+        update_total_cost();
+        fillStarterView();
     }
 
-    private class PopupOnClickListener implements DialogInterface.OnClickListener {
-
-        private Dish d;
-        private Boolean selected;
-
-        public PopupOnClickListener(Dish d, Boolean selected) {
-            this.d = d;
-            this.selected = selected;
-        }
-
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            if (selected) {
-                switch (d.getType()) {
-                    case 1:  MenuActivity.dinner.setStarter(null); break;
-                    case 2:  MenuActivity.dinner.setMain(null); break;
-                    default:  MenuActivity.dinner.setDesert(null);
-                }
-            } else {
-                switch (d.getType()) {
-                    case 1:  MenuActivity.dinner.setStarter(d); break;
-                    case 2:  MenuActivity.dinner.setMain(d); break;
-                    default:  MenuActivity.dinner.setDesert(d);
-                }
-            }
-
-            update_total_cost();
-            fillStarterView();
-            dialogInterface.cancel();
-        }
-    }
+//    private class PopupOnClickListener implements DialogInterface.OnClickListener {
+//
+//        private Dish d;
+//        private Boolean selected;
+//
+//        public PopupOnClickListener(Dish d, Boolean selected) {
+//            this.d = d;
+//            this.selected = selected;
+//        }
+//
+//        @Override
+//        public void onClick(DialogInterface dialogInterface, int i) {
+//            if (selected) {
+//                switch (d.getType()) {
+//                    case 1:  MenuActivity.dinner.setStarter(null); break;
+//                    case 2:  MenuActivity.dinner.setMain(null); break;
+//                    default:  MenuActivity.dinner.setDesert(null);
+//                }
+//            } else {
+//                switch (d.getType()) {
+//                    case 1:  MenuActivity.dinner.setStarter(d); break;
+//                    case 2:  MenuActivity.dinner.setMain(d); break;
+//                    default:  MenuActivity.dinner.setDesert(d);
+//                }
+//            }
+//
+//            update_total_cost();
+//            fillStarterView();
+//            dialogInterface.cancel();
+//        }
+//    }
 }

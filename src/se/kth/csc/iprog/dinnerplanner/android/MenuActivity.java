@@ -27,7 +27,7 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
 /**
  * Created by Jonas on 2014-02-06.
  */
-public class MenuActivity extends Activity {
+public class MenuActivity extends Activity implements View.OnClickListener {
 
     public static DinnerModel dinner = new DinnerModel();
 
@@ -43,20 +43,21 @@ public class MenuActivity extends Activity {
         MenuView view = new MenuView(findViewById(R.id.planning_screen), this);
         /*fillDropdown();
         fillStarterView();
+        */
         Spinner spinner = (Spinner) findViewById(R.id.dropdown);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int selected = (int) l+1;
                 dinner.setNumberOfGuests(selected);
-                update_total_cost();
+//                update_total_cost();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 dinner.setNumberOfGuests(0);
-                update_total_cost();
+//                update_total_cost();
             }
-            });*/
+            });
 
 
     }
@@ -124,7 +125,7 @@ public class MenuActivity extends Activity {
         Intent details_screen_navigation = new Intent(this, DetailsActivity.class);
         startActivity(details_screen_navigation);
     }
-    /*
+
     @Override
     public void onClick(View view) {
         Dish s = (Dish)view.getTag();
@@ -158,6 +159,7 @@ public class MenuActivity extends Activity {
         dialog.show();
     }
 
+
     private class PopupOnClickListener implements DialogInterface.OnClickListener {
 
         private Dish d;
@@ -184,11 +186,11 @@ public class MenuActivity extends Activity {
                 }
             }
 
-            update_total_cost();
-            fillStarterView();
+//            update_total_cost();
+//            fillStarterView();
             dialogInterface.cancel();
         }
-    }*/
+    }
 
 
 }

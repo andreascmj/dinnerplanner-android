@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import se.kth.csc.iprog.dinnerplanner.android.DetailsActivity;
+import se.kth.csc.iprog.dinnerplanner.android.MenuActivity;
 import se.kth.csc.iprog.dinnerplanner.android.R;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
@@ -27,7 +28,6 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
 public class MenuView implements View.OnClickListener{
     View view;
     Activity menu;
-    public static DinnerModel dinner = new DinnerModel();
 
     public MenuView(View view, Activity menu) {
 
@@ -41,12 +41,12 @@ public class MenuView implements View.OnClickListener{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int selected = (int) l+1;
-                dinner.setNumberOfGuests(selected);
+                MenuActivity.dinner.setNumberOfGuests(selected);
                 update_total_cost();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                dinner.setNumberOfGuests(0);
+                MenuActivity.dinner.setNumberOfGuests(0);
                 update_total_cost();
             }
         });
@@ -66,7 +66,7 @@ public class MenuView implements View.OnClickListener{
     }
 
     private void populateDishType(int type, LinearLayout layout) {
-        for (Dish s : dinner.getDishesOfType(type)) {
+        for (Dish s :  MenuActivity.dinner.getDishesOfType(type)) {
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(150, 150);;
 
             LinearLayout imageAndTextBox = new LinearLayout(menu);
@@ -86,7 +86,7 @@ public class MenuView implements View.OnClickListener{
             ib.setTag(s);
             ib.setOnClickListener(this);
 
-            if (dinner.getSelectedDish(s.getType()) == s) {
+            if ( MenuActivity.dinner.getSelectedDish(s.getType()) == s) {
                 imageAndTextBox.setBackgroundColor(Color.rgb(145, 32, 77));
                 tv.setTextColor(Color.rgb(226, 247, 206));
             }
@@ -107,7 +107,7 @@ public class MenuView implements View.OnClickListener{
 
     private void update_total_cost(){
         TextView totalcost_box = (TextView)menu.findViewById(R.id.total_cost);
-        totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
+        totalcost_box.setText("Total cost: " +  MenuActivity.dinner.getTotalMenuPrice() + " kr");
         //totalcost_box.setText("Total cost: " + dinner.getNumberOfGuests() + " kr"); //TODO remove this
     }
 
@@ -122,7 +122,7 @@ public class MenuView implements View.OnClickListener{
         View v = inflater.inflate(R.layout.popup_layout, null);
         builder.setView(v);
 
-        if (dinner.getSelectedDish(s.getType()) == s) {
+        if ( MenuActivity.dinner.getSelectedDish(s.getType()) == s) {
             builder.setPositiveButton(R.string.unchoose, new PopupOnClickListener(s, true));
         } else {
             builder.setPositiveButton(R.string.choose, new PopupOnClickListener(s, false));
@@ -138,7 +138,7 @@ public class MenuView implements View.OnClickListener{
         iv.setImageResource(imageId);
 
         TextView tv = (TextView)v.findViewById(R.id.popupText);
-        tv.setText("Cost:" + s.getPrice() * dinner.getNumberOfGuests() + " kr\n(" + s.getPrice() + " kr/pers)");
+        tv.setText("Cost:" + s.getPrice() *  MenuActivity.dinner.getNumberOfGuests() + " kr\n(" + s.getPrice() + " kr/pers)");
 
 
         dialog.show();
@@ -158,15 +158,15 @@ public class MenuView implements View.OnClickListener{
         public void onClick(DialogInterface dialogInterface, int i) {
             if (selected) {
                 switch (d.getType()) {
-                    case 1: dinner.setStarter(null); break;
-                    case 2: dinner.setMain(null); break;
-                    default: dinner.setDesert(null);
+                    case 1:  MenuActivity.dinner.setStarter(null); break;
+                    case 2:  MenuActivity.dinner.setMain(null); break;
+                    default:  MenuActivity.dinner.setDesert(null);
                 }
             } else {
                 switch (d.getType()) {
-                    case 1: dinner.setStarter(d); break;
-                    case 2: dinner.setMain(d); break;
-                    default: dinner.setDesert(d);
+                    case 1:  MenuActivity.dinner.setStarter(d); break;
+                    case 2:  MenuActivity.dinner.setMain(d); break;
+                    default:  MenuActivity.dinner.setDesert(d);
                 }
             }
 

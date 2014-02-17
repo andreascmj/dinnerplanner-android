@@ -4,22 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import se.kth.csc.iprog.dinnerplanner.android.view.ExampleView;
 import se.kth.csc.iprog.dinnerplanner.android.view.MenuView;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
@@ -41,9 +33,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         // it must come before any call to findViewById method
         setContentView(R.layout.planning_screen);
         MenuView view = new MenuView(findViewById(R.id.planning_screen), this);
-        /*fillDropdown();
-        fillStarterView();
-        */
         Spinner spinner = (Spinner) findViewById(R.id.dropdown);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -61,65 +50,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
 
     }
-
-    /*private void fillStarterView() {
-
-        LinearLayout starterlayout = (LinearLayout) findViewById(R.id.starterScrollView);
-        starterlayout.removeAllViews();
-        populateDishType(Dish.STARTER, starterlayout);
-        LinearLayout mainlayout = (LinearLayout) findViewById(R.id.mainScrollView);
-        mainlayout.removeAllViews();
-        populateDishType(Dish.MAIN, mainlayout);
-        LinearLayout desertlayout = (LinearLayout) findViewById(R.id.desertScrollView);
-        desertlayout.removeAllViews();
-        populateDishType(Dish.DESERT, desertlayout);
-    }
-
-    private void populateDishType(int type, LinearLayout layout) {
-        for (Dish s : dinner.getDishesOfType(type)) {
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(150, 150);;
-
-            LinearLayout imageAndTextBox = new LinearLayout(this);
-            imageAndTextBox.setOrientation(LinearLayout.VERTICAL);
-            imageAndTextBox.setPadding(5, 5, 5, 5);
-
-            TextView tv = new TextView(this);
-            tv.setText(s.getName());
-            tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-            tv.setTextSize(13);
-
-            ImageButton ib = new ImageButton(this);
-            int imageId = getResources().getIdentifier(s.getImage(), "drawable", getPackageName());
-            ib.setImageResource(imageId);
-
-            ib.setLayoutParams(lp);
-            ib.setTag(s);
-            ib.setOnClickListener(this);
-
-            if (dinner.getSelectedDish(s.getType()) == s) {
-                imageAndTextBox.setBackgroundColor(Color.rgb(145,32,77));
-                tv.setTextColor(Color.rgb(226, 247, 206));
-            }
-
-
-            layout.addView(imageAndTextBox);
-            imageAndTextBox.addView(ib);
-            imageAndTextBox.addView(tv);
-        }
-    }
-
-    private void fillDropdown() {
-        Spinner spinner = (Spinner) findViewById(R.id.dropdown);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dropdown, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-    }
-
-    private void update_total_cost(){
-        TextView totalcost_box = (TextView)findViewById(R.id.total_cost);
-        totalcost_box.setText("Total cost: " + dinner.getTotalMenuPrice() + " kr");
-        //totalcost_box.setText("Total cost: " + dinner.getNumberOfGuests() + " kr"); //TODO remove this
-    }*/
 
     public void details_click(View view){
         Intent details_screen_navigation = new Intent(this, DetailsActivity.class);
@@ -186,8 +116,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                 }
             }
 
-//            update_total_cost();
-//            fillStarterView();
             dialogInterface.cancel();
         }
     }
